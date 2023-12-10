@@ -6,10 +6,11 @@ from flask import Flask
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
-    )
+
+    app.config['MYSQL_USER'] = os.environ.get('MYSQL_USER')
+    app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQL_PASSWORD')
+    app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST')
+    app.config['MYSQL_DB'] = os.environ.get('MYSQL_DB')
     
     
     if test_config is None:
