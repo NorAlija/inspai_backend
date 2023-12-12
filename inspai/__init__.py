@@ -1,16 +1,17 @@
 import os
 
 from flask import Flask
+from dotenv import load_dotenv
 
 #The Application Factory
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
 
-    app.config['MYSQL_USER'] = os.environ.get('MYSQL_USER')
-    app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQL_PASSWORD')
-    app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST')
-    app.config['MYSQL_DB'] = os.environ.get('MYSQL_DB')
+    app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
+    app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
+    app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
+    app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
     
     
     if test_config is None:

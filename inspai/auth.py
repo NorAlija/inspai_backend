@@ -1,5 +1,5 @@
-from inspai.db import get_db
-
+from .db import get_db
+from mysql.connector.errors import IntegrityError
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
@@ -27,12 +27,13 @@ def register():
 
         if error is None:
             try:
-                db.execute(
-                    "INSERT INTO inspai_users (first_name, last_name, email, password) VALUES (%s, %s, %s, %s)",
+                cursor = db.cursor()
+                cursor.execute(
+                    "INSERT INTO inspai_users (first_name, last_name, email, password_hash) VALUES (%s, %s, %s, %s)",
                     (first_name, last_name, email, generate_password_hash(password)),
                 )
                 db.commit()
-            except db.IntegrityError:
+            except IntegrityError:
                 error = f"Email {email} is already registered."
             else:
                 return redirect(url_for("auth.login"))
