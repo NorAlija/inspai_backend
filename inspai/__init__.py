@@ -1,5 +1,5 @@
 import os
-
+import secrets
 from flask import Flask
 from dotenv import load_dotenv
 
@@ -12,6 +12,7 @@ def create_app(test_config=None):
     app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
     app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
     app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
+    app.config['SECRET_KEY'] = secrets.token_hex(32)
     
     
     if test_config is None:
