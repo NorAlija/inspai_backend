@@ -47,7 +47,6 @@ Contains HTML templates for the web pages. Key templates include:
    - `auth/register.html`: HTML template for the user registration page.
    - `auth/login.html`: HTML template for the user login page.
 
-##Installation
 ## Installation
 
 Follow these steps to set up and run the Flaskr web application:
