@@ -26,7 +26,7 @@ This project involes the development Flask-based web application designed for us
 
 - **templates:** Contains Jinja templates for the web pages.
 
-- ## Application Components
+## Application Components
 
 ### 1. `init.py`
 
