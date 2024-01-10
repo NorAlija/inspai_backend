@@ -15,10 +15,6 @@ This project involes the development Flask-based web application designed for us
 - **Python:** The programming language used for developing the application.
 - **MySQL Server:** The programming language used for developing the application.
 
-- Python 3.10.12
-- Flask
-- MySQL server
-
 
 ## Project Structure
 
