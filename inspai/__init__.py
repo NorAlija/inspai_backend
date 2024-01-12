@@ -2,11 +2,14 @@ import os
 import secrets
 from flask import Flask
 from dotenv import load_dotenv
+from flask_cors import CORS
+
 
 #The Application Factory
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
+    CORS(app)
 
     app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
     app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
@@ -27,10 +30,6 @@ def create_app(test_config=None):
     except OSError:
         pass
     
-    @app.route("/hi")
-    def hello():
-        return "Hello world"
-    
     from . import db
     db.init_app(app)
     
@@ -38,4 +37,5 @@ def create_app(test_config=None):
     app.register_blueprint(auth.bp)
     
     return app
+
 
